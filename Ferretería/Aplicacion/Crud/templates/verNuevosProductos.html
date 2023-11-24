@@ -1,0 +1,33 @@
+{% extends "./base.html" %}
+
+{% block title %} Gestion de cursos {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h1>
+            <font color="white">Listado de productos</font>
+        </h1>
+        <div class="table-responsive py-2">
+            <table class="table table-striped border border-secondary border-4">
+                <thead>
+                    <tr>
+                        <th>Codigo de producto</th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in cursos %}
+                    <tr>
+                        <td>{{c.codigo}}</td>
+                        <td>{{c.nombre}}</td>
+                        <td>${{c.creditos}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
