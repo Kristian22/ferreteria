@@ -1,0 +1,83 @@
+{% extends "./base.html" %}
+
+{% block title %} Gestion de viajes {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="container-fluid">
+        <h1>
+            <font color="white">Viajes para reparto</font>
+        </h1>
+        <div class="table-responsive py-2">
+            <table class="table table-striped border border-secondary border-4 text-center">
+                <thead>
+                    <tr>
+                        <th> </th>
+                        <th>Viaje Siguiente</th>
+                        <th>Viaje Actual</th>
+                        <th>Viaje Finzalizado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Codigo</th>
+                        <td>000003</td>
+                        <td>000002</td>
+                        <td>000001</td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <th>Turno</th>
+                        <td>3</td>
+                        <td>2</td>
+                        <td>1</td>
+                    </tr>
+                <tbody>
+                    <tr>
+                        <th>Hora estimada </th>
+                        <td>05:30</td>
+                        <td>04:30</td>
+                        <td>03:20</td>
+                    </tr>
+                </tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<br><br>
+<div class="container-fluid">
+    <h1>
+        <font color="white">Viajes en espera</font>
+    </h1>
+    <div class="table-responsive py-2">
+        <table class="table table-striped border border-secondary border-4">
+            <thead>
+                <tr>
+                    <th>Codigo de viaje</th>
+                    <th>Articulos</th>
+                    <th>hora_entrega_estimado</th>
+                    <th>Turno</th>
+                    <th>Direccion</th>
+                    <th>Telefono</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for v in viajes %}
+                <tr>
+                    <td>{{v.num_viaje}}</td>
+                    <td>{{v.articulos}}</td>
+                    <td>{{v.hora_entrega_estimado}}</td>
+                    <td>{{v.turno}}</td>
+                    <td>{{v.direccion}}</td>
+                    <td>{{v.num_telefono}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+{% endblock %}
