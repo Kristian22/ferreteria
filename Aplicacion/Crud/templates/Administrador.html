@@ -1,0 +1,129 @@
+{% extends "./base.html" %}
+
+{% block title %} Gestion de viajes {% endblock %}
+
+{% block body %}
+<table class="text-center">
+    <thead>
+        <tr>
+            <th><a href="/Administrador" class="btn btn-success text-white">Viajes</a></th>
+            <th><a href="/AnadirProductos" class="btn btn-primary text-white">Productos</a></th>
+            <th><a href="/CorreoManager" class="btn btn-warning text-white">Comentarios</a></th>
+        </tr>
+    </thead>
+</table>
+<br>
+<table class="text-center">
+    <thead>
+        <tr>
+            <th><a href="#Gestion" class="btn btn-secondary text-white">Gestion de viajes</a></th>
+            <th><a href="#Listado" class="btn btn-secondary text-white">Listado de viajes</a></th>
+        </tr>
+    </thead>
+</table>
+
+<br>
+
+<div class="container" id="Gestion">
+    <div class="row">
+        <h2>
+            <font color="white">Gestion de Viajes</font>
+        </h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/Administrador/registrarViaje/" method="POST">{% csrf_token %}
+                    <p>
+                        <font color="black">Codigo del viaje</font>
+                    </p>
+                    <div class="form-group"><!----Codigo de Viaje-->
+                        <input type="text" id="txtViaje" name="txtViaje" class="form-control"
+                            placeholder="Codigo de viaje" minlength="6" maxlength="6" required>
+                    </div>
+                    <br>
+                    <p>
+                        <font color="black">Articulos a llevar</font>
+                    </p>
+                    <div class="form-group"><!----Artculos----->
+                        <input type="text" id="txtArticulos" name="txtArticulos" class="form-control"
+                            placeholder="Articulos" maxlength="70" required>
+                    </div>
+                    <br>
+                    <p>
+                        <font color="black">Hora de entrega estimada</font>
+                    </p>
+                    <div class="form-group"><!----Hora de entrega----->
+                        <input type="text" id="hora_entrega_estimado" name="hora_entrega_estimado" class="form-control"
+                            maxlength="5" value="00:00" required>
+                    </div>
+                    <br>
+                    <p>
+                        <font color="black">Turno</font>
+                    </p>
+                    <div class="form-group"><!----Turno----->
+                        <input type="number" id="num_Turno" name="num_Turno" class="form-control" required>
+                    </div>
+                    <br>
+                    <p>
+                        <font color="black">Direccion</font>
+                    </p>
+                    <div class="form-group"><!----Direccion----->
+                        <input type="text" id="txtDireccion" name="txtDireccion" class="form-control"
+                            placeholder="Direccion" maxlength="40" required>
+                    </div>
+                    <br>
+                    <p>
+                        <font color="black">Numero de telefono</font>
+                    </p>
+                    <div class="form-group"><!----numero de telefono----->
+                        <input type="number" id="num_telefono" name="num_telefono" class="form-control" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <center>
+                            <button type="submit" class="btn btn-success w-100 text-white">Guardar</button>
+                        </center>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container-fluid" id="Listado">
+        <h1>
+            <font color="white">Listado de viajes</font>
+        </h1>
+        <div class="table-responsive py-2">
+            <table class="table table-striped border border-secondary border-4">
+                <thead>
+                    <tr>
+                        <th>Codigo de viaje</th>
+                        <th>Articulos</th>
+                        <th>hora_entrega_estimado</th>
+                        <th>Turno</th>
+                        <th>Direccion</th>
+                        <th>Telefono</th>
+
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for v in viajes %}
+                    <tr>
+                        <td>{{v.num_viaje}}</td>
+                        <td>{{v.articulos}}</td>
+                        <td>{{v.hora_entrega_estimado}}</td>
+                        <td>{{v.turno}}</td>
+                        <td>{{v.direccion}}</td>
+                        <td>{{v.num_telefono}}</td>
+                        <td><a href="edicionViaje/{{v.num_viaje}}" class="btn btn-info text-white">Editar</a>
+                        </td>
+                        <td><a href="eliminarViaje/{{v.num_viaje}}" class="btn btn-danger">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
