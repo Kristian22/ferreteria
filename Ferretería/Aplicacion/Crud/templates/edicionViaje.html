@@ -1,0 +1,75 @@
+{% extends "./base.html" %}
+
+{% block title %} Edicion Viaje {% endblock %}
+
+{% block body %}
+
+
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <h2>
+            <font color="white">Edicion de Viajes</font>
+        </h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarViaje/" method="POST">{% csrf_token %}
+                    <p>
+                        <font color="black">Codigo del viaje</font>
+                    </p>
+                    <div class="form-group"><!----Codigo de Viaje-->
+                        <input type="text" id="txtViaje" name="txtViaje" value="{{viaje.num_viaje}}"
+                            class="form-control" placeholder="Codigo de viaje" minlength="6" maxlength="6" readonly
+                            required>
+                    </div>
+                    <br>
+                    <p>
+                        <font color="black">Articulos a llevar</font>
+                    </p>
+                    <div class="form-group"><!----Artculos----->
+                        <input type="text" id="txtArticulos" name="txtArticulos" value="{{viaje.articulos}}"
+                            class="form-control" placeholder="Articulos" maxlength="70" required>
+                    </div>
+                    <br>
+                    <p>
+                        <font color="black">Hora de entrega estimada</font>
+                    </p>
+                    <div class="form-group"><!----Hora de entrega----->
+                        <input type="text" id="hora_entrega_estimado" name="hora_entrega_estimado"
+                            value="{{viaje.hora_entrega_estimado}}" class="form-control" maxlength="5" value="00:00"
+                            required>
+                    </div>
+                    <br>
+                    <p>
+                        <font color="black">Turno</font>
+                    </p>
+                    <div class="form-group"><!----Turno----->
+                        <input type="number" id="num_Turno" name="num_Turno" value="{{viaje.turno}}"
+                            class="form-control" required>
+                    </div>
+                    <br>
+                    <p>
+                        <font color="black">Direccion</font>
+                    </p>
+                    <div class="form-group"><!----Direccion----->
+                        <input type="text" id="txtDireccion" name="txtDireccion" value="{{viaje.direccion}}"
+                            class="form-control" placeholder="Direccion" maxlength="40" required>
+                    </div>
+                    <br>
+                    <p>
+                        <font color="black">Numero de telefono</font>
+                    </p>
+                    <div class="form-group"><!----numero de telefono----->
+                        <input type="number" id="num_telefono" name="num_telefono" value="{{viaje.num_telefono}}"
+                            class="form-control" required>
+                    </div>
+                    <br>
+                    <center>
+                        <button type="submit" class="btn btn-success w-100 text-white">Guardar</button>
+                    </center>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
