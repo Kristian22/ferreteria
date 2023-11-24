@@ -1,18 +1,8 @@
 {
-    "builds": [
+    "rewrites": [
         {
-            "src": "CRUD/wsgi.py",
-            "use": "@vercel/phyton",
-            "config": {
-                "maxLambdaSize": "15mb",
-                "runtime": "python3.9"
-            }
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "CRUD/wsgi.py"
+            "source": "/(.*)",
+            "destination": "/"
         }
     ]
 }
