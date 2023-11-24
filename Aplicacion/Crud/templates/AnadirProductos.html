@@ -1,0 +1,89 @@
+{% extends "./base.html" %}
+
+{% block title %} Añadir productos {% endblock %}
+
+{% block body %}
+<table class="text-center">
+    <thead>
+        <tr>
+            <th><a href="/Administrador" class="btn btn-success text-white">Viajes</a></th>
+            <th><a href="/AnadirProductos" class="btn btn-primary text-white">Productos</a></th>
+            <th><a href="/CorreoManager" class="btn btn-warning text-white">Comentarios</a></th>
+        </tr>
+    </thead>
+</table>
+
+<br>
+
+<div class="row" id="ProductosEd">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <h2>
+            <font color="white">Gestion de Productos</font>
+        </h2>
+        <div class="card">
+            <div class="card-body">
+                <form action=" /registrarCurso/" method="POST">{% csrf_token %}
+                    <p>
+                        <font color="black">Codigo del producto</font>
+                    </p>
+                    <div class="form-group">
+                        <input type="text" id="txtCodigo" name="txtCodigo" class="form-control"
+                            placeholder="Codigo de producto" minlength="6" maxlength="6" required>
+                    </div>
+                    <br>
+                    <p>
+                        <font color="black">Nombre del producto</font>
+                    </p>
+                    <div class="form-group">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Producto"
+                            maxlength="50" required>
+                    </div>
+                    <br>
+                    <p>
+                        <font color="black">Precio</font>
+                    </p>
+                    <div class="form-group">
+                        <input type="text" id="numCreditos" name="numCreditos" class="form-control" min="1" max="1000"
+                            value="1" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <center>
+                            <button type="submit" class="btn btn-success w-100 text-white">Guardar</button>
+                        </center>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h1>
+            <font color="white">Listado de productos</font>
+        </h1>
+        <div class="table-responsive py-2">
+            <table class="table table-striped border border-secondary border-4">
+                <thead>
+                    <tr>
+                        <th>Codigo de producto</th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in cursos %}
+                    <tr>
+                        <td>{{c.codigo}}</td>
+                        <td>{{c.nombre}}</td>
+                        <td>${{c.creditos}}</td>
+                        <td><a href="edicionCurso/{{c.codigo}}" class="btn btn-info text-white">Editar</a>
+                        </td>
+                        <td><a href="eliminarCurso/{{c.codigo}}" class="btn btn-danger">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
